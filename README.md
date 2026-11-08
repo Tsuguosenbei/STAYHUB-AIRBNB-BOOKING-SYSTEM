@@ -9,13 +9,13 @@ An academic Java project demonstrating core Object-Oriented Programming (OOP) co
 * **Gil Lorence Palma** (`@Tsuguosenbei`) - **Team Leader / Architect**
   * Core repository setup, CLI runner engine (`Main.java`), system architecture, and interface design (`Bookable.java`).
 
-* **Kate Darrize De Chavez** - **Documentation Leader**
+* **Kate Darrize De Chavez** (`@dechavezkatkat06-code`) - **Documentation Leader**
   * README documentation, project specifications, and user manual formatting.
 
-* **Erick Angelo Marquinez** - **System / Design Lead**
+* **Erick Angelo Marquinez** (`@25-04986-cloud`) - **System / Design Lead**
   * Abstract base model (`Property.java`) and core domain subclasses (`ApartmentProperty.java`, `VillaProperty.java`).
 
-* **Merald Agda** - **Lead Programmer**
+* **Merald Agda** (`@Merald Agda`) - **Lead Programmer**
   * Subclass models (`SharedRoomProperty.java`), reservation engine (`Reservation.java`), and exception handling logic.
 
 ---
