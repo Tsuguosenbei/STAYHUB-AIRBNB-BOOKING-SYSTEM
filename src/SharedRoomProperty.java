@@ -1,16 +1,18 @@
 public class SharedRoomProperty extends Property {
-    private int totalBedsInRoom;
+    private int totalBeds;
 
-    public SharedRoomProperty(String propertyId, String title, String location, double pricePerNight, int totalBedsInRoom) {
+    public SharedRoomProperty(String propertyId, String title, String location, double pricePerNight, int totalBeds) {
         super(propertyId, title, location, pricePerNight);
-        this.totalBedsInRoom = totalBedsInRoom;
+        this.totalBeds = totalBeds;
     }
+
+    public int getTotalBeds() { return totalBeds; }
 
     @Override
     public void displayDetails() {
         System.out.println("[Shared Room] ID: " + getPropertyId() + " | Title: " + getTitle() + 
                            " | Location: " + getLocation() + " | ₱" + getPricePerNight() + "/night" +
-                           " | Total Beds: " + totalBedsInRoom +
+                           " | Total Beds: " + totalBeds +
                            " | Status: " + (isAvailable() ? "Available" : "Booked"));
     }
 }

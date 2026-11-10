@@ -21,13 +21,13 @@ public class Reservation {
     }
 
     public void printReceipt() {
-        System.out.println("====== STAYHUB RESERVATION RECEIPT ======");
+        System.out.println("----- RESERVATION RECEIPT -----");
         System.out.println("Reservation ID : " + reservationId);
         System.out.println("Guest Name     : " + guestName);
         System.out.println("Property Title : " + property.getTitle());
         System.out.println("Location       : " + property.getLocation());
-        System.out.println("Duration       : " + nights + " night(s)");
+        System.out.println("Nights Stayed  : " + nights);
         System.out.println("Total Amount   : ₱" + calculateTotalCost());
-        System.out.println("=========================================");
+        System.out.println("-------------------------------");
     }
 }
