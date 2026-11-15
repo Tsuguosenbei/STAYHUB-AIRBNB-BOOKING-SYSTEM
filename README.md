@@ -90,22 +90,22 @@ The application provides six menu options:
 - ## Application Screenshots
 
 ### Main Menu
-![Main Menu](screenshots/01-main-menu.png)
+![Main Menu](screenshots/main-menu.png)
 
 ### Property Listings
-![Property Listings](screenshots/02-property-listings.png)
+![Property Listings](screenshots/property-listings.png)
 
 ### Successful Booking
-![Successful Booking](screenshots/03-successful-booking.png)
+![Successful Booking](screenshots/successful-booking.png)
 
 ### Double-Booking Prevention
-![Double-Booking Prevention](screenshots/04-double-booking-error.png)
+![Double-Booking Prevention](screenshots/double-booking-error.png)
 
 ### Reservation Cancellation
-![Reservation Cancellation](screenshots/05-cancellation.png)
+![Reservation Cancellation](screenshots/cancellation.png)
 
 ### Host Property Creation
-![Host Property Creation](screenshots/06-host-listing.png)
+![Host Property Creation](screenshots/host-listing.png)
 
 ### Input Validation
-![Input Validation](screenshots/07-input-validation.png)
+![Input Validation](screenshots/input-validation.png)
