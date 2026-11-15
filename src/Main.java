@@ -6,6 +6,8 @@ public class Main {
     private static List<Property> properties = new ArrayList<>();
     private static List<Reservation> reservations = new ArrayList<>();
     private static final String HOST_PIN = "1234";
+    private static int nextReservationId = 1001;
+    private static int nextPropertyId = 104;
 
     public static void main(String[] args) {
         // Seed initial sample data
@@ -92,7 +94,15 @@ public class Main {
         try {
             targetProperty.book();
             System.out.print("Enter Guest Full Name: ");
-            String name = scanner.nextLine();
+            String name = scanner.nextLine().trim();
+
+            if (name.isEmpty()) {
+                targetProperty.cancelBooking();
+                throw new InvalidBookingException(
+                    "Guest name cannot be empty."
+                );
+            }
+
             System.out.print("Enter Number of Nights: ");
             int nights = Integer.parseInt(scanner.nextLine());
 
@@ -101,9 +111,11 @@ public class Main {
                 throw new InvalidBookingException("Duration must be at least 1 night.");
             }
 
-            String resId = "RES-" + (reservations.size() + 1001);
+            String resId = "RES-" + nextReservationId;
             Reservation res = new Reservation(resId, targetProperty, name, nights);
             reservations.add(res);
+
+            nextReservationId++;
 
             System.out.println("\n[Success] Booking confirmed!");
             res.printReceipt();
@@ -157,40 +169,131 @@ public class Main {
         System.out.println("2. Villa");
         System.out.println("3. Shared Room");
         System.out.print("Choice: ");
-        String type = scanner.nextLine();
+        String type = scanner.nextLine().trim();
+
+        if (!type.equals("1") &&
+            !type.equals("2") &&
+            !type.equals("3")) {
+
+            System.out.println("[Error] Invalid property type! Please select 1, 2, or 3.");
+            return;
+        }
 
         System.out.print("Enter Title: ");
-        String title = scanner.nextLine();
+        String title = scanner.nextLine().trim();
+
+        if (title.isEmpty()) {
+            System.out.println("[Error] Property title cannot be empty.");
+            return;
+        }
         System.out.print("Enter Location: ");
-        String location = scanner.nextLine();
-        System.out.print("Enter Price per Night (₱): ");
-        double price = Double.parseDouble(scanner.nextLine());
-        String newId = "P" + (properties.size() + 101);
+        String location = scanner.nextLine().trim();
+
+        if (location.isEmpty()) {
+            System.out.println("[Error] Property location cannot be empty.");
+            return;
+        }
+        double price;
+
+        try {
+            System.out.print("Enter Price per Night (₱): ");
+            price = Double.parseDouble(scanner.nextLine());
+
+            if (!Double.isFinite(price) || price <= 0) {
+                System.out.println("[Error] Price must be greater than zero.");
+                return;
+            }
+
+        } catch (NumberFormatException e) {
+            System.out.println("[Error] Invalid price! Please enter a valid number.");
+            return;
+        }
+
+        String newId = "P" + nextPropertyId;
 
         if ("1".equals(type)) {
-            System.out.print("Enter Floor Number: ");
-            int floor = Integer.parseInt(scanner.nextLine());
-            System.out.print("Has Elevator? (true/false): ");
-            boolean elev = Boolean.parseBoolean(scanner.nextLine());
+        	int floor;
+
+        	try {
+        	    System.out.print("Enter Floor Number: ");
+        	    floor = Integer.parseInt(scanner.nextLine());
+
+        	    if (floor < 0) {
+        	        System.out.println("[Error] Floor number cannot be negative.");
+        	        return;
+        	    }
+
+        	} catch (NumberFormatException e) {
+        	    System.out.println("[Error] Invalid floor number! Enter a whole number.");
+        	    return;
+        	}
+        	Boolean elev = readBoolean(scanner, "Has Elevator? (true/false): ");
+
+        	if (elev == null) {
+        	    return;
+        	}
             properties.add(new ApartmentProperty(newId, title, location, price, floor, elev));
         } else if ("2".equals(type)) {
-            System.out.print("Has Private Pool? (true/false): ");
-            boolean pool = Boolean.parseBoolean(scanner.nextLine());
-            System.out.print("Enter Max Guests: ");
-            int guests = Integer.parseInt(scanner.nextLine());
+        	Boolean pool = readBoolean(scanner, "Has Private Pool? (true/false): ");
+
+        	if (pool == null) {
+        	    return;
+        	}
+            int guests;
+
+            try {
+                System.out.print("Enter Max Guests: ");
+                guests = Integer.parseInt(scanner.nextLine());
+
+                if (guests <= 0) {
+                    System.out.println("[Error] Maximum guests must be at least 1.");
+                    return;
+                }
+
+            } catch (NumberFormatException e) {
+                System.out.println("[Error] Invalid guest count! Enter a whole number.");
+                return;
+            }
             properties.add(new VillaProperty(newId, title, location, price, pool, guests));
         } else if ("3".equals(type)) {
-            System.out.print("Enter Total Beds in Room: ");
-            int beds = Integer.parseInt(scanner.nextLine());
+        	int beds;
+
+        	try {
+        	    System.out.print("Enter Total Beds in Room: ");
+        	    beds = Integer.parseInt(scanner.nextLine());
+
+        	    if (beds <= 0) {
+        	        System.out.println("[Error] Number of beds must be at least 1.");
+        	        return;
+        	    }
+
+        	} catch (NumberFormatException e) {
+        	    System.out.println("[Error] Invalid bed count! Enter a whole number.");
+        	    return;
+        	}
             properties.add(new SharedRoomProperty(newId, title, location, price, beds));
         } else {
             System.out.println("[Error] Invalid property type selection.");
             return;
         }
-
+        nextPropertyId++;
         System.out.println("[Success] New property listed with ID: " + newId);
     }
+    private static Boolean readBoolean(Scanner scanner, String prompt) {
+        System.out.print(prompt);
+        String input = scanner.nextLine().trim();
 
+        if (input.equalsIgnoreCase("true")) {
+            return true;
+        }
+
+        if (input.equalsIgnoreCase("false")) {
+            return false;
+        }
+
+        System.out.println("[Error] Invalid input! Please enter true or false.");
+        return null;
+    }
     private static void viewReservations() {
         System.out.println("\n--- ACTIVE RESERVATIONS ---");
         if (reservations.isEmpty()) {
