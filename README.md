@@ -86,3 +86,26 @@ The application provides six menu options:
 - Property and reservation data are stored in memory.
 - Data created during a session are not saved after the application closes.
 - The Host Portal uses a demonstration PIN configured in the source code.
+
+- ## Application Screenshots
+
+### Main Menu
+![Main Menu](screenshots/01-main-menu.png)
+
+### Property Listings
+![Property Listings](screenshots/02-property-listings.png)
+
+### Successful Booking
+![Successful Booking](screenshots/03-successful-booking.png)
+
+### Double-Booking Prevention
+![Double-Booking Prevention](screenshots/04-double-booking-error.png)
+
+### Reservation Cancellation
+![Reservation Cancellation](screenshots/05-cancellation.png)
+
+### Host Property Creation
+![Host Property Creation](screenshots/06-host-listing.png)
+
+### Input Validation
+![Input Validation](screenshots/07-input-validation.png)
