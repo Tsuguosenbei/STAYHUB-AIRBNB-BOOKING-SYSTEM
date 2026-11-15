@@ -109,3 +109,95 @@ The application provides six menu options:
 
 ### Input Validation
 ![Input Validation](screenshots/input-validation.png)
+
+
+---
+
+## 📌 Problem Statement
+
+Traditional accommodation booking processes can be inconvenient when guests cannot easily view property details, check availability, or manage reservations in one place.
+
+STAYHUB addresses this problem by providing a console-based booking system where users can browse accommodations, make reservations, and cancel bookings. It also allows hosts to register new properties.
+
+## 🎯 Project Objectives
+
+The objectives of STAYHUB are to:
+
+1. Develop a functional accommodation booking system using Java.
+2. Allow guests to browse available properties and make reservations.
+3. Prevent double-booking through property availability checking.
+4. Allow guests to cancel reservations.
+5. Provide a host portal for adding property listings.
+6. Demonstrate the four fundamental principles of Object-Oriented Programming.
+7. Apply input validation and exception handling to improve system reliability.
+
+## 👥 Target Users
+
+- **Guests:** Individuals looking for accommodations who want to browse listings and manage reservations.
+- **Property Hosts:** Individuals who want to register apartments, villas, or shared rooms.
+- **Students and Developers:** Individuals studying Java programming and Object-Oriented Programming concepts.
+
+## 🧩 Object-Oriented Programming Concepts
+
+### 1. Encapsulation
+
+STAYHUB uses private attributes to protect class data and public methods to provide controlled access.
+
+**Implementation:** `Property.java` and `Reservation.java` contain private fields and getter methods.
+
+### 2. Inheritance
+
+Inheritance allows specialized property classes to reuse common attributes and behaviors from a parent class.
+
+**Implementation:** `ApartmentProperty`, `VillaProperty`, and `SharedRoomProperty` extend the abstract `Property` class.
+
+### 3. Abstraction
+
+Abstraction allows the application to define essential behaviors without exposing every implementation detail.
+
+**Implementation:** The abstract `Property` class declares `displayDetails()`, while the `Bookable` interface defines `book()` and `cancelBooking()`.
+
+### 4. Polymorphism
+
+Polymorphism allows different property objects to respond differently to the same method call.
+
+**Implementation:** Each property subclass overrides `displayDetails()` to show information specific to its property type.
+
+## 📐 UML Class Diagram
+
+The UML class diagram illustrates the relationships between STAYHUB's classes and interfaces.
+
+![STAYHUB UML Class Diagram](Docs/UML.png)
+
+## 🧪 Testing and Validation
+
+The application was tested for booking functionality, reservation cancellation, property creation, invalid inputs, and double-booking prevention.
+
+For detailed test cases and results, see:
+
+[STAYHUB Testing Documentation](Docs/TESTING.md)
+
+## ⚠️ System Limitations
+
+- The application operates through a command-line interface.
+- Property and reservation records are stored in memory.
+- Records are not preserved after the application closes.
+- The system does not support real payment processing.
+- The Host Portal uses a demonstration PIN rather than a full user authentication system.
+
+## 🔮 Future Improvements
+
+Potential improvements include:
+
+1. Adding a graphical user interface.
+2. Implementing database storage for persistent records.
+3. Introducing user registration and login.
+4. Supporting booking dates and availability calendars.
+5. Adding property search and filtering.
+6. Implementing payment processing in a future production-ready version.
+
+---
+
+**STAYHUB – Console-Based Airbnb Booking System**
+
+An academic Java project demonstrating Object-Oriented Programming principles through accommodation booking and reservation management.
