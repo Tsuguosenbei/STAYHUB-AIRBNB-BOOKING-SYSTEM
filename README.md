@@ -87,7 +87,7 @@ The application provides six menu options:
 - Data created during a session are not saved after the application closes.
 - The Host Portal uses a demonstration PIN configured in the source code.
 
-- ## Application Screenshots
+## Application Screenshots
 
 ### Main Menu
 ![Main Menu](screenshots/main-menu.png)
